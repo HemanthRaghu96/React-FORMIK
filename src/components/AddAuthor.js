@@ -21,9 +21,13 @@ export default function AddAuthor() {
       .string()
       .min(20, "Need a longer biography")
       .required("Why not fill this biography?"),
+      poster: yup
+      .string()
+      .min(5, "Need a longer poster")
+      .required("Why not fill this poster?"),
   });
   const formik = useFormik({
-    initialValues: { name: "", birthDate: "", biography: "" },
+    initialValues: { name: "", birthDate: "", biography: "",poster: "" },
     validationSchema: formValidationSchema,
     onSubmit: (newBook) => {
       handleAddNewBook(newBook);
@@ -97,6 +101,25 @@ export default function AddAuthor() {
         )}
         <br />
 
+        <TextField
+          variant="outlined"
+          id="poster"
+          name="poster"
+          type="text"
+          label="Poster"
+          value={formik.values.poster}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.poster && formik.errors.poster ? (
+          <p className="p-1 text-red-500 font-poppins text-sm">
+            {formik.errors.poster}
+          </p>
+        ) : (
+          ""
+        )}
+        <br />
+        
         <button
           type="submit"
           className="border p-2 m-2 font-poppins rounded-md"

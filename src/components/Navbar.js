@@ -12,12 +12,12 @@ export default function Navbar() {
     const navigate=useNavigate()
   return (
     <section>
-    <nav className='bg-black'>
+    <nav className='bg-black w-full'>
         <ul className='flex justify-center'>
-            <li><button onClick={()=>navigate('./')} className='p-2 m-2 font-poppins text-white'>Books</button></li>
-            <li><button onClick={()=>navigate('./author')} className='p-2 m-2 font-poppins text-white'>Authors</button></li>
-            <li><button onClick={()=>navigate('./addbook')} className='p-2 m-2 font-poppins text-white'>AddBook</button></li>
-            <li><button onClick={()=>navigate('./addauthor')} className='p-2 m-2 font-poppins text-white'>AddAuthor</button></li>
+            <li><button onClick={()=>navigate('./')} className='p-2 m-1 text-sm md:text-base font-poppins text-white'>Books</button></li>
+            <li><button onClick={()=>navigate('./author')} className='p-2 m-1 text-sm md:text-base font-poppins text-white'>Authors</button></li>
+            <li><button onClick={()=>navigate('./addbook')} className='p-2 m-1 text-sm md:text-base font-poppins text-white'>AddBook</button></li>
+            <li><button onClick={()=>navigate('./addauthor')} className='p-2 m-1 text-sm md:text-base font-poppins text-white'>AddAuthor</button></li>
         </ul>
     </nav>
         <Routes>

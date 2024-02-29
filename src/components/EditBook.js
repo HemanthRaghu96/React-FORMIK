@@ -43,10 +43,14 @@ function EditBookDetails({bookData,bookid}){
         .string()
         .min(5, "Need a longer date")
         .required("Why not fill this date?"),
+        poster: yup
+        .string()
+        .min(5, "Need a longer poster")
+        .required("Why not fill this poster?"),
     });
     
     const formik = useFormik({
-      initialValues: { title: `${bookData.title}`, author: `${bookData.author}`, ISBNNumber: `${bookData.ISBNNumber}`, date: `${bookData.date}` },
+      initialValues: { title: `${bookData.title}`, author: `${bookData.author}`, ISBNNumber: `${bookData.ISBNNumber}`, date: `${bookData.date}`,poster:`${bookData.poster}` },
       validationSchema: formValidationSchema,
       onSubmit: (newBook) => {
         handleAddNewBook(newBook);
@@ -133,6 +137,25 @@ function EditBookDetails({bookData,bookid}){
       {formik.touched.date && formik.errors.date ? (
         <p className="p-1 text-red-500 font-poppins text-sm">
           {formik.errors.date}
+        </p>
+      ) : (
+        ""
+      )}
+      <br />
+
+      <TextField
+        variant="outlined"
+        id="poster"
+        name="poster"
+        type="text"
+        label="Poster"
+        value={formik.values.poster}
+        onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
+      />
+      {formik.touched.poster && formik.errors.poster ? (
+        <p className="p-1 text-red-500 font-poppins text-sm">
+          {formik.errors.poster}
         </p>
       ) : (
         ""

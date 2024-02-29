@@ -26,9 +26,19 @@ export default function AddBook() {
       .string()
       .min(5, "Need a longer date")
       .required("Why not fill this date?"),
+    poster: yup
+      .string()
+      .min(5, "Need a longer poster")
+      .required("Why not fill this poster?"),
   });
   const formik = useFormik({
-    initialValues: { title: "", author: "", ISBNNumber: "", date: "" },
+    initialValues: {
+      title: "",
+      author: "",
+      ISBNNumber: "",
+      date: "",
+      poster: "",
+    },
     validationSchema: formValidationSchema,
     onSubmit: (newBook) => {
       handleAddNewBook(newBook);
@@ -44,7 +54,10 @@ export default function AddBook() {
       <form
         onSubmit={formik.handleSubmit}
         className="w-10/12 flex flex-col justify-center items-center  mx-auto p-10"
-      ><p className='font-poppins font-bold text-2xl m-3 mb-10'>Add Book Details</p>
+      >
+        <p className="font-poppins font-bold text-2xl m-3 mb-10">
+          Add Book Details
+        </p>
         <TextField
           variant="outlined"
           id="title"
@@ -115,6 +128,25 @@ export default function AddBook() {
         {formik.touched.date && formik.errors.date ? (
           <p className="p-1 text-red-500 font-poppins text-sm">
             {formik.errors.date}
+          </p>
+        ) : (
+          ""
+        )}
+        <br />
+
+        <TextField
+          variant="outlined"
+          id="poster"
+          name="poster"
+          type="text"
+          label="Poster"
+          value={formik.values.poster}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.poster && formik.errors.poster ? (
+          <p className="p-1 text-red-500 font-poppins text-sm">
+            {formik.errors.poster}
           </p>
         ) : (
           ""

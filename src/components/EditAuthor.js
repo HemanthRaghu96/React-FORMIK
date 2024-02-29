@@ -34,9 +34,13 @@ function EditAuthorDetails({authorData,authorid}){
       .string()
       .min(20, "Need a longer biography")
       .required("Why not fill this biography?"),
+      poster: yup
+        .string()
+        .min(5, "Need a longer poster")
+        .required("Why not fill this poster?"),
   });
   const formik = useFormik({
-    initialValues: { name: `${authorData.name}`, birthDate: `${authorData.birthDate}`, biography: `${authorData.biography}` },
+    initialValues: { name: `${authorData.name}`, birthDate: `${authorData.birthDate}`, biography: `${authorData.biography}`, poster: `${authorData.poster}` },
     validationSchema: formValidationSchema,
     onSubmit: (newBook) => {
       handleAddNewBook(newBook);
@@ -104,6 +108,25 @@ function EditAuthorDetails({authorData,authorid}){
         {formik.touched.biography && formik.errors.biography ? (
           <p className="p-1 text-red-500 font-poppins text-sm">
             {formik.errors.biography}
+          </p>
+        ) : (
+          ""
+        )}
+        <br />
+
+        <TextField
+          variant="outlined"
+          id="poster"
+          name="poster"
+          type="text"
+          label="Poster"
+          value={formik.values.poster}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+        />
+        {formik.touched.poster && formik.errors.poster ? (
+          <p className="p-1 text-red-500 font-poppins text-sm">
+            {formik.errors.poster}
           </p>
         ) : (
           ""
